@@ -6,7 +6,7 @@
     <title>Message Board</title>
 </head>
 <body>
-    <h1>Public Message Board</h1>
+    <h1>Plane Chat 🛩️</h1>
     <form method="POST" action="/">
         <input type="text" name="user" placeholder="Your name" required value="{{ user }}"><br>
         <textarea name="message" placeholder="Write your message here..." required></textarea><br>
@@ -16,10 +16,9 @@
     <h2>Messages:</h2>
     <ul>
         {% for msg in messages %}
-            <li><strong>{{ msg.user }}:</strong> {{ msg.text }}</li>
+            <li><strong>{{ msg.user }}:</strong> {{ msg.message }}</li>
         {% endfor %}
     </ul>
 </body>
 </html>
-
 
