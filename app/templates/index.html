@@ -21,14 +21,17 @@
     </ul>
 </body>
 <script>
-    $(document).ready(function(){
-    var socket = io();
-    socket.on('new_msg', function(msg) {
-        var list = document.getElementById("msglist");
-        var li = document.createElement("li");
-        li.appendChild(document.createTextNode("<strong>" + msg.user + ":<strong/>" +msg.message));
-    });
-    });
+    // $(document).ready(function(){
+    // var socket = io();
+    // socket.on('new_msg', function(msg) {
+    //     var list = document.getElementById("msglist");
+    //     var li = document.createElement("li");
+    //     li.appendChild(document.createTextNode("<strong>" + msg.user + ":<strong/>" +msg.message));
+    // });
+    // });
+     setTimeout(function() {
+    location.reload();
+  }, 5000)
 </script>
 </html>
 
