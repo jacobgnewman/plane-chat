@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, send
 
 import sqlite3
 import logging
@@ -44,7 +44,7 @@ def index():
             # Get the message from the form
             message = request.form.get("message")
             user = request.form.get("user")
-            emit("new_msg", {"message": message, "user": user}, broadcast=True)
+            send("new_msg", {"message": message, "user": user}, broadcast=True)
             # timestamp message
             ts = time.time()
 
