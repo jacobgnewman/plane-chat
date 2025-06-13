@@ -44,7 +44,7 @@ def index():
             # Get the message from the form
             message = request.form.get("message")
             user = request.form.get("user")
-            send(str({"message": message, "user": user}), broadcast=True)
+            send(str({"message": message, "user": user}), broadcast=True, namespace="/")
             # timestamp message
             ts = time.time()
 
