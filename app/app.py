@@ -1,13 +1,19 @@
 from flask import Flask, render_template, request, redirect, url_for, make_response
+from flask_socketio import SocketIO, emit
+
 import sqlite3
 import logging
 import time
 
+
 db = f"db/chat.db"
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 logging.basicConfig(level=logging.DEBUG)
+
+
 
 with app.app_context():
     conn = sqlite3.connect(db)
@@ -38,6 +44,7 @@ def index():
             # Get the message from the form
             message = request.form.get("message")
             user = request.form.get("user")
+            emmit("new_msg", {"message": message, "user": user}, broadcast=True)
             # timestamp message
             ts = time.time()
 
@@ -69,5 +76,5 @@ def index():
     
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8765, debug=True)
+    socketio.run(host="0.0.0.0", port=8765, debug=True)
 
