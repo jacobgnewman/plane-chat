@@ -8,5 +8,7 @@ services:
     volumes:
       - ./app:/srv
       - ./db:/srv/db
+      - ./share:/srv/static/share
     ports:
+      - '6789:6789'
       - '8765:8765'
