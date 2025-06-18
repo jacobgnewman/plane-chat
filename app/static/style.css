@@ -87,18 +87,40 @@ textarea:focus {
 .plane {
   font-family: monospace;
   white-space: pre-wrap;
-  font-size:xx-small;
+  font-size: xx-small;
 }
 
 .antenna_green {
-    text-shadow: 0 0 5px green, 0 0 3px green;
+  text-shadow: 0 0 5px green, 0 0 3px green;
+  animation: light-green-animation 1s ease-in-out infinite;
+  color: green;
+}
 
+@keyframes light-green-animation {
+  from {
     color: green;
+    text-shadow: 0 0 5px green, 0 0 10px green;
+  }
+  to {
+    color: darkgreen;
+    text-shadow: none;
+  }
 }
 
 .antenna_red {
-    text-shadow: 0 0 5px red, 0 0 3px red;
+  text-shadow: 0 0 5px red, 0 0 3px red;
+  animation: light-red-animation 1s ease-in-out infinite;
+  color: red;
+}
+@keyframes light-red-animation {
+  from {
     color: red;
+    text-shadow: 0 0 5px red, 0 0 10px red;
+  }
+  to {
+    color: darkred;
+    text-shadow: none;
+  }
 }
 
 button {
@@ -139,24 +161,32 @@ ol {
   -moz-transform: translateX(0%);
   -webkit-transform: translateX(0%);
   transform: translateX(0%);
-  
+
   -moz-animation: my-animation 3s linear infinite;
   -webkit-animation: my-animation 3s linear infinite;
   animation: my-animation 3s linear infinite;
-  
+
   white-space: nowrap;
 }
 
 /* for Firefox */
 @-moz-keyframes my-animation {
-  from { -moz-transform: translateX(0%); }
-  to { -moz-transform: translateX(-50%); }
+  from {
+    -moz-transform: translateX(0%);
+  }
+  to {
+    -moz-transform: translateX(-50%);
+  }
 }
 
 /* for Chrome */
 @-webkit-keyframes my-animation {
-  from { -webkit-transform: translateX(0%); }
-  to { -webkit-transform: translateX(-50%); }
+  from {
+    -webkit-transform: translateX(0%);
+  }
+  to {
+    -webkit-transform: translateX(-50%);
+  }
 }
 
 @keyframes my-animation {
@@ -170,3 +200,8 @@ ol {
     -webkit-transform: translateX(0%);
     transform: translateX(-50%);
   }
+}
+
+.header {
+  display: flexbox;
+}
