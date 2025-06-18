@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Plane Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     <h1>Plane Chat 🛩️</h1>
@@ -10,14 +11,21 @@
 
     <div id="chatbox" style="height:300px;overflow-y:scroll;border:1px solid #000;">
         {% for msg in messages %}
-            <div><b>{{ msg.user }}</b>: {{ msg.message }}</div>
+            <div><b>{{ msg.user }}</b>: {{ msg.message | replace('\n', '<br>') | safe }}</div>
         {% endfor %}
     </div>
 
-    <input id="message" placeholder="Type a message...">
+    <textarea id="message" placeholder="Type a message..."> </textarea>
     <button onclick="sendMessage()">Send</button>
 
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
+
+    <h2>File Share?</h2>
+    <ol>
+        {% for file in files %}
+            <a href="static/share/{{ file }}"> {{ file }} </a>
+        {% endfor %}
+    </ol>
 
 </body>
 </html>

@@ -12,18 +12,37 @@ window.onload = function () {
     chatbox.scrollTop = chatbox.scrollHeight;
 };
 
+document.addEventListener("DOMContentLoaded", () => {
+    const messageInput = document.getElementById("message");
+
+    messageInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" && !event.shiftKey) {
+            event.preventDefault();  // prevent newline
+            sendMessage();
+        }
+    });
+});
+
+
 socket.onmessage = (event) => {
     console.log('Message received:', event.data);
     const data = JSON.parse(event.data);
+    const user = data.username || 'Anonymous';
+    const msg = data.content.replace(/\n/g, "<br>");
+
     const chatbox = document.getElementById('chatbox');
     const msgDiv = document.createElement('div');
-    msgDiv.innerHTML = `<b>${data.username}</b>: ${data.content}`;
+
+    msgDiv.innerHTML = `<b>${user}</b>: ${msg}`;
     chatbox.appendChild(msgDiv);
     chatbox.scrollTop = chatbox.scrollHeight;
+
 };
 
 function sendMessage() {
     const message = document.getElementById('message').value;
+    console.log('Sending message:', message);
+
     const username = document.getElementById('username').value || 'Anonymous';
     if (message.trim() === '') return;
 
