@@ -1,18 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Plane Chat</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
-    <h1>Plane Chat 🛩️</h1>
-    <input id="username" placeholder="Username"><br><br>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+    <!--favicon whatever?-->
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="{{ url_for('static', filename='favicon.ico') }}"
+    />
+  </head>
 
-    <div id="chatbox" style="height:300px;overflow-y:scroll;border:1px solid #000;">
-        {% for msg in messages %}
-            <div><b>{{ msg.user }}</b>: {{ msg.message | replace('\n', '<br>') | safe }}</div>
-        {% endfor %}
+  <body>
+    <div>
+      <div style="width: 50%">
+        <h1>Plane Chat</h1>
+        <h2 id="internet-status">Internet Status ???</h2>
+      </div>
+      <div>
+        <p class="plane">
+            ______
+            _\ _~-\___                           <span id="antenna">o</span>
+    =  = ==(____AA____D                           \
+                \_____\___________________,-~~~~~~~`-.._
+                /     o O o o o o O O o o o o o o O o  |\_
+                `~-.__        ___..----..                  )
+                      `---~~\___________/------------`````
+                      =  ===(_________D
+        </p>
+        <!-- @ Roland lol -->
+      </div>
+    </div>
+
+    <input id="username" placeholder="Username" /><br /><br />
+
+    <div id="chatbox">
+      {% for msg in messages %}
+      <div class="msg">
+        <b class="msg_name"> {{ msg.user }}:</b>
+        <div class="msg_content">
+          {{ msg.message | replace('\n', '<br />') | safe }}
+        </div>
+      </div>
+      {% endfor %}
     </div>
 
     <textarea id="message" placeholder="Type a message..."> </textarea>
@@ -20,12 +54,25 @@
 
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
 
-    <h2>File Share?</h2>
+    <h2>File Share</h2>
     <ol>
-        {% for file in files %}
-            <a href="static/share/{{ file }}"> {{ file }} </a>
-        {% endfor %}
+      {% for file in files %}
+      <div>
+        <a href="static/share/{{ file }}"> {{ file }} </a>
+      </div>
+      {% endfor %}
     </ol>
 
-</body>
+    <h3>Upload</h3>
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <div>
+        <label for="file">Choose file to upload</label>
+        <input type="file" id="file" name="file" multiple />
+      </div>
+      <div>
+        <button>Submit</button>
+      </div>
+    </form>
+  </body>
 </html>

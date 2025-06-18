@@ -165,3 +165,6 @@ db/chat.db
 
 app/static/share
 share/*
+
+*/.DS_Store
+app/static/.DS_Store

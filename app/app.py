@@ -10,7 +10,7 @@ import logging
 
 import websockets
 from websockets.asyncio.server import broadcast
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 DB_PATH = "/srv/db/chat.db"
 SHARE_DIR = "/srv/static/share"
@@ -63,6 +63,21 @@ def index():
     return render_template("index.html", messages=messages, files=files)
 
 
+@app.route("/upload", methods=["POST"])
+def upload_file():
+    if "file" not in request.files:
+        return "No file part", 400
+
+    file = request.files["file"]
+    if file.filename == "":
+        return "No selected file", 400
+
+    if file:
+        filepath = os.path.join(SHARE_DIR, file.filename)
+        file.save(filepath)
+        return "File uploaded successfully", 200
+
+    return "File upload failed", 500
 
 # WebSocket server setup
 
@@ -112,7 +127,7 @@ async def handler(websocket):
             conn.close()
 
             # Broadcast to all clients
-            message_broadcast = json.dumps({"username": username, "content": content})
+            message_broadcast = json.dumps({"type" : "message", "username": username, "content": content})
             broadcast(clients, message_broadcast)
 
             print(f"Broadcasted message: {message_broadcast}")

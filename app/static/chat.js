@@ -27,15 +27,51 @@ document.addEventListener("DOMContentLoaded", () => {
 socket.onmessage = (event) => {
     console.log('Message received:', event.data);
     const data = JSON.parse(event.data);
-    const user = data.username || 'Anonymous';
-    const msg = data.content.replace(/\n/g, "<br>");
 
-    const chatbox = document.getElementById('chatbox');
-    const msgDiv = document.createElement('div');
+    switch (data.type) {
+        case 'message':
+            const user = data.username || 'Anonymous';
+            const msg = data.content.replace(/\n/g, "<br>");
 
-    msgDiv.innerHTML = `<b>${user}</b>: ${msg}`;
-    chatbox.appendChild(msgDiv);
-    chatbox.scrollTop = chatbox.scrollHeight;
+            const chatbox = document.getElementById('chatbox');
+            const msgDiv = document.createElement('div');
+
+            msgDiv.innerHTML = `<div class="msg">
+                                 <b class="msg_name">${user}:</b>
+                                 <div class="msg_content"> ${msg} </div>
+                                </div>`;
+
+            chatbox.appendChild(msgDiv);
+            chatbox.scrollTop = chatbox.scrollHeight;
+            break;
+        case "status":
+            const internetStatus = document.getElementById('internet-status');
+            const antenna = document.getElementById('antenna');
+
+            if (data.online) {
+                internetStatus.textContent = "Internet is online";
+                internetStatus.style.color = "green";
+                if (antenna.classList.contains('antenna_red')) {
+                    antenna.classList.remove('antenna_red');
+                }
+                antenna.classList.add('antenna_green');
+                
+                
+            } else {
+                internetStatus.textContent = "Internet is offline";
+                internetStatus.style.color = "red";
+                if (antenna.classList.contains('antenna_green')) {
+                    antenna.classList.remove('antenna_green');
+                }
+                antenna.classList.add('antenna_red');
+            }
+            break;
+        default:
+            console.warn('Unknown message type:', data.type);
+            console.log('Full message:', data);
+            break;
+    }
+
 
 };
 

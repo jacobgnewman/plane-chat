@@ -12,7 +12,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-input, 
+input,
 button {
   background-color: #2c2c2c;
   color: #ffffff;
@@ -31,23 +31,23 @@ button:hover {
 }
 
 textarea {
-    background-color: #2c2c2c;
-    color: #ffffff;
-    border: 1px solid #444;
-    padding: 8px;
-    margin: 5px 0;
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-    resize: none; /* disables manual resizing */
-    height: 60px;  /* set height as needed */
-    font-family: inherit;
-    font-size: 14px;
+  background-color: #2c2c2c;
+  color: #ffffff;
+  border: 1px solid #444;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  resize: none; /* disables manual resizing */
+  height: 60px; /* set height as needed */
+  font-family: inherit;
+  font-size: 14px;
 }
 
 textarea:focus {
-    border-color: #888;
-    outline: none;
+  border-color: #888;
+  outline: none;
 }
 
 #chatbox {
@@ -66,6 +66,38 @@ textarea:focus {
 
 #chatbox b {
   color: #73c0ff;
+}
+
+.msg {
+  display: table;
+}
+
+.msg_name {
+  display: table-cell;
+  white-space: nowrap;
+  padding: 0px 5px 0px 0px;
+}
+
+.msg_content {
+  display: table-cell;
+  white-space: pre-wrap;
+  font-family: monospace;
+}
+
+.plane {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+.antenna_green {
+    text-shadow: 0 0 5px green, 0 0 3px green;
+
+    color: green;
+}
+
+.antenna_red {
+    text-shadow: 0 0 5px red, 0 0 3px red;
+    color: red;
 }
 
 button {
