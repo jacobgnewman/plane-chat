@@ -1,7 +1,8 @@
 body {
   background-color: #1e1e1e;
   color: #f1f1f1;
-  font-family: Arial, sans-serif;
+  font-family: "Source Code Pro", monospace;
+
   margin: 0;
   padding: 20px;
 }
@@ -40,7 +41,7 @@ textarea {
   width: 100%;
   box-sizing: border-box;
   resize: none; /* disables manual resizing */
-  height: 60px; /* set height as needed */
+  height: 100px; /* set height as needed */
   font-family: inherit;
   font-size: 14px;
 }
@@ -203,5 +204,6 @@ ol {
 }
 
 .header {
-  display: flexbox;
+  display: flex;
+  font-family: 'Courier New', Courier, monospace;
 }

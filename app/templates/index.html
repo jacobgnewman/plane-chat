@@ -17,7 +17,7 @@
 
   <body>
     <div class="header">
-      <div >
+      <div>
         <h1>Plane Chat</h1>
         <h2 id="internet-status">Internet Status ???</h2>
       </div>
@@ -35,6 +35,7 @@
         <!-- @ Roland lol -->
       </div>
     </div>
+    </div>
 
     <input id="username" placeholder="Username" /><br /><br />
 
@@ -47,7 +48,7 @@
       {% endfor %}
     </div>
 
-    <textarea id="message" placeholder="Type a message..."> </textarea>
+    <textarea id="message" placeholder="Type a message..." oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"''> </textarea>
     <button onclick="sendMessage()">Send</button>
 
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
