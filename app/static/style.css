@@ -87,6 +87,7 @@ textarea:focus {
 .plane {
   font-family: monospace;
   white-space: pre-wrap;
+  font-size:xx-small;
 }
 
 .antenna_green {
@@ -125,3 +126,47 @@ a:hover {
 ol {
   padding-left: 20px;
 }
+
+#scroll-container {
+  overflow: hidden;
+  height: 16px;
+  width: 58px;
+  display: inline-grid;
+}
+
+#scroll-text {
+  /* animation properties */
+  -moz-transform: translateX(0%);
+  -webkit-transform: translateX(0%);
+  transform: translateX(0%);
+  
+  -moz-animation: my-animation 3s linear infinite;
+  -webkit-animation: my-animation 3s linear infinite;
+  animation: my-animation 3s linear infinite;
+  
+  white-space: nowrap;
+}
+
+/* for Firefox */
+@-moz-keyframes my-animation {
+  from { -moz-transform: translateX(0%); }
+  to { -moz-transform: translateX(-50%); }
+}
+
+/* for Chrome */
+@-webkit-keyframes my-animation {
+  from { -webkit-transform: translateX(0%); }
+  to { -webkit-transform: translateX(-50%); }
+}
+
+@keyframes my-animation {
+  from {
+    -moz-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(0%);
+  }
+  to {
+    -moz-transform: translateX(0%);
+    -webkit-transform: translateX(0%);
+    transform: translateX(-50%);
+  }

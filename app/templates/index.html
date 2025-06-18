@@ -22,16 +22,16 @@
         <h2 id="internet-status">Internet Status ???</h2>
       </div>
       <div>
-        <p class="plane">
+        <div class="plane">
             ______
             _\ _~-\___                           <span id="antenna">o</span>
-    =  = ==(____AA____D                           \
+<div id="scroll-container"><div id="scroll-text">== ==  = ==  === = ===  === = === ==  = ==  === =  ===   === = =</div></div>(____AA____<span id="topengine">D</span>                           \
                 \_____\___________________,-~~~~~~~`-.._
                 /     o O o o o o O O o o o o o o O o  |\_
                 `~-.__        ___..----..                  )
                       `---~~\___________/------------`````
-                      =  ===(_________D
-        </p>
+                  <div id="scroll-container"><div id="scroll-text">== ==  = ==  === = ===  === = === ==  = ==  === =  ===   === = =</div></div>(_________<span id="bottomengine">D</span>
+        </span>
         <!-- @ Roland lol -->
       </div>
     </div>
@@ -42,9 +42,7 @@
       {% for msg in messages %}
       <div class="msg">
         <b class="msg_name"> {{ msg.user }}:</b>
-        <div class="msg_content">
-          {{ msg.message | replace('\n', '<br />') | safe }}
-        </div>
+        <div class="msg_content"> {{ msg.message | replace('\n', '<br />') | safe }} </div>
       </div>
       {% endfor %}
     </div>

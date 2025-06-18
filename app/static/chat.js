@@ -47,23 +47,29 @@ socket.onmessage = (event) => {
         case "status":
             const internetStatus = document.getElementById('internet-status');
             const antenna = document.getElementById('antenna');
+            const topengine = document.getElementById('topengine');
+            const bottomengine = document.getElementById('bottomengine');
 
             if (data.online) {
                 internetStatus.textContent = "Internet is online";
                 internetStatus.style.color = "green";
-                if (antenna.classList.contains('antenna_red')) {
-                    antenna.classList.remove('antenna_red');
+                for (const element of [antenna, topengine, bottomengine]) {
+                    if (element.classList.contains('antenna_red')) {
+                        element.classList.remove('antenna_red');
+                    }
+                    element.classList.add('antenna_green');
                 }
-                antenna.classList.add('antenna_green');
                 
                 
             } else {
                 internetStatus.textContent = "Internet is offline";
                 internetStatus.style.color = "red";
-                if (antenna.classList.contains('antenna_green')) {
-                    antenna.classList.remove('antenna_green');
+                for (const element of [antenna, topengine, bottomengine]) {
+                    if (element.classList.contains('antenna_green')) {
+                        element.classList.remove('antenna_green');
+                    }
+                    element.classList.add('antenna_red');
                 }
-                antenna.classList.add('antenna_red');
             }
             break;
         default:
